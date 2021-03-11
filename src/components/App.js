@@ -1,5 +1,6 @@
 // import logo from './logo.svg';
 // import './App.css';
+import "../css/index.css"
 import Photo from "./Photo";
 import Nav from "./Nav";
 import NotFound from "./NotFound";
@@ -9,8 +10,8 @@ import apiKey from "../config";
 
 function App() {
   return (
-    <div className="App">
-      <h1>Hello World!</h1>
+    <div className="App container">
+      
       <Photo />
       <Nav />
       <NotFound />
