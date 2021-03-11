@@ -3,6 +3,11 @@ import React from "react";
 class SearchForm extends React.Component {
   constructor() {
     super();
+
+    this.state = {
+
+    }
+
   }
 
   render() {

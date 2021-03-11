@@ -1,20 +1,23 @@
 import React from "react";
+import { BrowserRouter, Switch, Route, Link } from "react-router-dom";
 
 function Nav() {
   return (
-    <nav class="main-nav">
-      <ul>
-        <li>
-          <a href="#">Cats</a>
-        </li>
-        <li>
-          <a href="#">Dogs</a>
-        </li>
-        <li>
-          <a href="#">Computers</a>
-        </li>
-      </ul>
-    </nav>
+    <BrowserRouter>
+      <nav class="main-nav">
+        <ul>
+          <li>
+            <Link to="/cats">Cats</Link>
+          </li>
+          <li>
+            <Link to="/dogs">Dogs</Link>
+          </li>
+          <li>
+            <Link to="/computers">Computers</Link>
+          </li>
+        </ul>
+      </nav>
+    </BrowserRouter>
   );
 }
 
