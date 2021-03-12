@@ -1,9 +1,10 @@
 import React from "react";
 import { BrowserRouter, Switch, Route, Link } from "react-router-dom";
 
-function Nav() {
+function Nav(props) {
+  console.log("NAV PROPS: ", props)
   return (
-    <BrowserRouter>
+    // <BrowserRouter>
       <nav class="main-nav">
         <ul>
           <li>
@@ -17,7 +18,7 @@ function Nav() {
           </li>
         </ul>
       </nav>
-    </BrowserRouter>
+    // </BrowserRouter>
   );
 }
 

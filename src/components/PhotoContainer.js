@@ -1,11 +1,14 @@
 import React from "react";
+import Photo from "./Photo";
 
 class PhotoContainer extends React.Component {
-  constructor() {
+  constructor(props) {
     super();
-  }
+  console.log(props)
 
+  }
   render() {
+
     return (
       <div class="photo-container">
         <h2>Results</h2>
