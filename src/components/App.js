@@ -60,7 +60,7 @@ class App extends React.Component {
       });
   }
 
-  performSearch = (query) => {
+  performSearch(query) {
     fetch(
       `https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=${query}&per_page=24&format=json&nojsoncallback=1`
     )
@@ -78,7 +78,7 @@ class App extends React.Component {
     return (
       <BrowserRouter>
         <div className="App container">
-          <SearchForm />
+          {/* <SearchForm /> */}
           <Nav
             cats={this.state.catsData}
             dogs={this.state.dogsData}
@@ -109,14 +109,7 @@ class App extends React.Component {
                 />
               )}
             />
-            {/* <Route path="/search" component={SearchForm} /> */}
-
-            {/* <Route path="/search" component={SearchForm} /> */}
-
-            {/* <Dog />
-          <Cat />
-          <Computer /> */}
-            {/* <SearchForm /> */}
+            <SearchForm onSearch={this.performSearch} />
             <PhotoContainer images={this.state.data} />
           </Switch>
           {/* <Photo /> */}
