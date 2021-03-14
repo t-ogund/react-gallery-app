@@ -5,10 +5,12 @@ class SearchForm extends React.Component {
     super();
 
     this.state = {
-
+      query: []
     }
 
   }
+
+  
 
   render() {
     return (

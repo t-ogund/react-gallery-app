@@ -1,8 +1,9 @@
 import React from "react";
+import App from "./App";
 import { BrowserRouter, Switch, Route, Link } from "react-router-dom";
 
 function Nav(props) {
-  console.log("NAV PROPS: ", props)
+  console.log("PROPS", props)
   return (
     // <BrowserRouter>
       <nav class="main-nav">

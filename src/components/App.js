@@ -15,21 +15,62 @@ class App extends React.Component {
     super();
 
     this.state = {
-      data: [],
+      catsData: [],
+      dogsData: [],
+      computersData: [],
     };
   }
 
   componentDidMount() {
-    
     fetch(
-      `https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=basketball&per_page=24&format=json&nojsoncallback=1`
+      `https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=cats&per_page=24&format=json&nojsoncallback=1`
     )
       .then((res) => res.json())
       .then((data) => {
         this.setState({
-          data: data.photos,
+          catsData: data.photos,
         });
         console.log(data.photos);
+        console.log("Cats Data: ", this.state.catsData);
+      });
+
+    fetch(
+      `https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=dogs&per_page=24&format=json&nojsoncallback=1`
+    )
+      .then((res) => res.json())
+      .then((data) => {
+        this.setState({
+          dogsData: data.photos,
+        });
+        console.log(data.photos);
+        console.log("Dogs Data: ", this.state.dogsData);
+      });
+
+    fetch(
+      `https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=computers&per_page=24&format=json&nojsoncallback=1`
+    )
+      .then((res) => res.json())
+      .then((data) => {
+        this.setState({
+          computersData: data.photos,
+        });
+        console.log(data.photos);
+        console.log("Computers Data: ", this.state.computersData);
+        console.log("Drilled Computers Data: ", this.state.computersData.photo);
+      });
+  }
+
+  performSearch = (query) => {
+    fetch(
+      `https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=${query}&per_page=24&format=json&nojsoncallback=1`
+    )
+      .then((res) => res.json())
+      .then((data) => {
+        this.setState({
+          searchData: data.photos,
+        });
+        console.log(data.photos);
+        console.log("Search Data: ", this.state.searchData);
       });
   }
 
@@ -38,20 +79,45 @@ class App extends React.Component {
       <BrowserRouter>
         <div className="App container">
           <SearchForm />
-          <Nav images={this.state.data} />
+          <Nav
+            cats={this.state.catsData}
+            dogs={this.state.dogsData}
+            computers={this.state.computersData}
+          />
           <Switch>
-          <Route path="/cats" component={PhotoContainer} />
-          <Route path="/dogs" component={PhotoContainer} />
-          <Route path="/computers" component={PhotoContainer} />
-          {/* <Route path="/search" component={SearchForm} /> */}
+            <Route
+              path="/cats"
+              cats={this.state.catsData}
+              render={() => (
+                <PhotoContainer images={this.state.catsData} title="Cats" />
+              )}
+            />
+            <Route
+              path="/dogs"
+              dogs={this.state.dogsData}
+              render={() => (
+                <PhotoContainer images={this.state.dogsData} title="Dogs" />
+              )}
+            />
+            <Route
+              path="/computers"
+              computers={this.state.computersData}
+              render={() => (
+                <PhotoContainer
+                  images={this.state.computersData}
+                  title="Computers"
+                />
+              )}
+            />
+            {/* <Route path="/search" component={SearchForm} /> */}
 
-          {/* <Route path="/search" component={SearchForm} /> */}
+            {/* <Route path="/search" component={SearchForm} /> */}
 
-          {/* <Dog />
+            {/* <Dog />
           <Cat />
           <Computer /> */}
-          {/* <SearchForm /> */}
-            {/* <PhotoContainer images={this.state.data} /> */}
+            {/* <SearchForm /> */}
+            <PhotoContainer images={this.state.data} />
           </Switch>
           {/* <Photo /> */}
           {/* <NotFound /> */}

@@ -1,42 +1,31 @@
 import React from "react";
 import Photo from "./Photo";
+import NotFound from "./NotFound";
 
-class PhotoContainer extends React.Component {
-  constructor(props) {
-    super();
-  console.log(props)
+function PhotoContainer(props) {
 
-  }
-  render() {
-
+  const results = props.images.photo
+  console.log("RESULTS: ", results)
+  // 
     return (
       <div class="photo-container">
         <h2>Results</h2>
+        <h3>{props.title}</h3>
+        {console.log(props.images.photo)}
         <ul>
+        { console.log("JSX RESULTS: ", results) }
+
+        { 
+          results ? results.map(image => { return <Photo url={`https://live.staticflickr.com/${image.server}/${image.id}_${image.secret}.jpg`} alt={image.title} key={ image.id } /> }) : <NotFound />
+        }  
+        
           <li>
             <img
               src="https://farm5.staticflickr.com/4334/37032996241_4c16a9b530.jpg"
               alt=""
             />
           </li>
-          <li>
-            <img
-              src="https://farm5.staticflickr.com/4342/36338751244_316b6ee54b.jpg"
-              alt=""
-            />
-          </li>
-          <li>
-            <img
-              src="https://farm5.staticflickr.com/4343/37175099045_0d3a249629.jpg"
-              alt=""
-            />
-          </li>
-          <li>
-            <img
-              src="https://farm5.staticflickr.com/4425/36337012384_ba3365621e.jpg"
-              alt=""
-            />
-          </li>
+
           {/* <!-- Not Found --> */}
           {/* <li class="not-found">
             <h3>No Results Found</h3>
@@ -45,7 +34,6 @@ class PhotoContainer extends React.Component {
         </ul>
       </div>
     );
-  }
 }
 
 export default PhotoContainer;
