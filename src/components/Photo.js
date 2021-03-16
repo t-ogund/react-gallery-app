@@ -2,7 +2,6 @@ import React from "react";
 import App from "./App";
 
 function Photo(props) {
-    console.log(props)
     return(
         <li>
             <img src={props.url} alt={props.alt} />

@@ -3,9 +3,8 @@ import App from "./App";
 import { BrowserRouter, Switch, Route, Link } from "react-router-dom";
 
 function Nav(props) {
-  console.log("PROPS", props);
   return (
-    <nav class="main-nav">
+    <nav className="main-nav">
       <ul>
         <li>
           <Link to="/cats">Cats</Link>

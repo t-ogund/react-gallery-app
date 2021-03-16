@@ -3,17 +3,17 @@ import Photo from "./Photo";
 import NotFound from "./NotFound";
 
 function PhotoContainer(props) {
-
+  console.log(props)
   const results = props.images.photo
-  console.log("RESULTS: ", results)
+  console.log(props)
+  // let query = props.match.params.query
+  
   // 
     return (
-      <div class="photo-container">
+      <div className="photo-container">
         <h2>Results</h2>
         <h3>{props.title}</h3>
-        {console.log(props.images.photo)}
         <ul>
-        { console.log("JSX RESULTS: ", results) }
 
         { 
           results ? results.map(image => { return <Photo url={`https://live.staticflickr.com/${image.server}/${image.id}_${image.secret}.jpg`} alt={image.title} key={ image.id } /> }) : <NotFound />

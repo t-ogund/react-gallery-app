@@ -2,34 +2,37 @@ import React from "react";
 import App from "./App";
 
 class SearchForm extends React.Component {
-  constructor(props) {
+  constructor({match}) {
+    console.log(match)
     super();
-    console.log(props)
     this.state = {
       searchText: ""
     }
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.onSearchChange = this.onSearchChange.bind(this)
+    this.onKeyUp = this.onKeyUp.bind(this)
   }
 
-  onSearchChange(e) {
+  onKeyUp(e) {
+    console.log("Typed value: ", e.target.value)
     this.setState({ searchText: e.target.value });
-    console.log(this.state.searchText)
   }
 
   handleSubmit(e) {
     e.preventDefault();
+    // const searchValue = e.target.children[0].value
+    // console.log("Search Value: ", searchValue)
+    console.log(this.state.searchText)
     this.props.onSearch(this.state.searchText);
-    // e.currentTarget.reset();
+    e.currentTarget.reset();
   }
 
   
 
   render() {
     return (
-      <form  onSubmit={this.handleSubmit} class="search-form">
-        <input onChange={this.onSearchChange} type="search" name="search" placeholder="Search" required />
-        <button type="submit" class="search-button">
+      <form  onSubmit={this.handleSubmit} className="search-form">
+        <input onChange={this.onKeyUp} ref={ (input) => this.search = input} type="search" name="search" placeholder="Search" required />
+        <button type="submit" className="search-button">
           <svg
             fill="#fff"
             height="24"

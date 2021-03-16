@@ -11,14 +11,17 @@ import React from "react";
 import { BrowserRouter, Switch, Route, Link } from "react-router-dom";
 
 class App extends React.Component {
-  constructor() {
+  constructor(props) {
     super();
 
     this.state = {
       catsData: [],
       dogsData: [],
       computersData: [],
+      searchData: []
     };
+
+    this.performSearch = this.performSearch.bind(this);
   }
 
   componentDidMount() {
@@ -30,8 +33,6 @@ class App extends React.Component {
         this.setState({
           catsData: data.photos,
         });
-        console.log(data.photos);
-        console.log("Cats Data: ", this.state.catsData);
       });
 
     fetch(
@@ -42,8 +43,6 @@ class App extends React.Component {
         this.setState({
           dogsData: data.photos,
         });
-        console.log(data.photos);
-        console.log("Dogs Data: ", this.state.dogsData);
       });
 
     fetch(
@@ -54,9 +53,6 @@ class App extends React.Component {
         this.setState({
           computersData: data.photos,
         });
-        console.log(data.photos);
-        console.log("Computers Data: ", this.state.computersData);
-        console.log("Drilled Computers Data: ", this.state.computersData.photo);
       });
   }
 
@@ -69,8 +65,7 @@ class App extends React.Component {
         this.setState({
           searchData: data.photos,
         });
-        console.log(data.photos);
-        console.log("Search Data: ", this.state.searchData);
+      console.log(this.state.searchData)
       });
   }
 
@@ -78,7 +73,7 @@ class App extends React.Component {
     return (
       <BrowserRouter>
         <div className="App container">
-          {/* <SearchForm /> */}
+          <SearchForm onSearch={this.performSearch} />
           <Nav
             cats={this.state.catsData}
             dogs={this.state.dogsData}
@@ -88,29 +83,29 @@ class App extends React.Component {
             <Route
               path="/cats"
               cats={this.state.catsData}
-              render={() => (
-                <PhotoContainer images={this.state.catsData} title="Cats" />
+              render={({match}) => (
+                <PhotoContainer match={match}images={this.state.catsData} title="Cats" />
               )}
             />
             <Route
               path="/dogs"
               dogs={this.state.dogsData}
-              render={() => (
-                <PhotoContainer images={this.state.dogsData} title="Dogs" />
+              render={({match}) => (
+                <PhotoContainer match={match} images={this.state.dogsData} title="Dogs" />
               )}
             />
             <Route
               path="/computers"
               computers={this.state.computersData}
-              render={() => (
-                <PhotoContainer
+              render={({match}) => (
+                <PhotoContainer match={match}
                   images={this.state.computersData}
                   title="Computers"
                 />
               )}
             />
-            <SearchForm onSearch={this.performSearch} />
-            <PhotoContainer images={this.state.data} />
+            {/* <SearchForm onSearch={this.performSearch} /> */}
+            <Route exact path="/search/:query" render={({match}) => (<PhotoContainer match={match} images={this.state.searchData} />)} />
           </Switch>
           {/* <Photo /> */}
           {/* <NotFound /> */}
