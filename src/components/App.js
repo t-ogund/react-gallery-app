@@ -18,7 +18,8 @@ class App extends React.Component {
       catsData: [],
       dogsData: [],
       computersData: [],
-      searchData: []
+      searchData: [],
+      urlData: []
     };
 
     this.performSearch = this.performSearch.bind(this);
@@ -55,6 +56,22 @@ class App extends React.Component {
         });
       });
   }
+
+  // componentDidUpdate(urlQuery) {
+  //   console.log(urlQuery)
+  //   if (urlQuery.data !== this.props.data) {
+  //     fetch(
+  //       `https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=${urlQuery}&per_page=24&format=json&nojsoncallback=1`
+  //     )
+  //       .then((res) => res.json())
+  //       .then((data) => {
+  //         this.setState({
+  //           urlData: data.photos,
+  //         });
+  //       console.log(this.state.urlData)
+  //       });
+  //   } 
+  // }
 
   performSearch(query) {
     fetch(
@@ -104,8 +121,8 @@ class App extends React.Component {
                 />
               )}
             />
-            {/* <SearchForm onSearch={this.performSearch} /> */}
-            <Route exact path="/search/:query" render={({match}) => (<PhotoContainer match={match} images={this.state.searchData} />)} />
+            <Route path="/search/:searchValue" render={({match}) => (<PhotoContainer match={match} images={this.state.searchData} />)} />
+            <Route component={NotFound} />
           </Switch>
           {/* <Photo /> */}
           {/* <NotFound /> */}

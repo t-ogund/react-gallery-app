@@ -1,9 +1,9 @@
 import React from "react";
+import { withRouter } from "react-router-dom";
 import App from "./App";
 
 class SearchForm extends React.Component {
   constructor({match}) {
-    console.log(match)
     super();
     this.state = {
       searchText: ""
@@ -13,15 +13,14 @@ class SearchForm extends React.Component {
   }
 
   onKeyUp(e) {
-    console.log("Typed value: ", e.target.value)
     this.setState({ searchText: e.target.value });
   }
 
-  handleSubmit(e) {
+  handleSubmit = (e) => {
     e.preventDefault();
-    // const searchValue = e.target.children[0].value
-    // console.log("Search Value: ", searchValue)
-    console.log(this.state.searchText)
+    let searchValue = this.search.value;
+    let path = `/search/${searchValue}`
+    this.props.history.push(path);
     this.props.onSearch(this.state.searchText);
     e.currentTarget.reset();
   }
@@ -49,4 +48,4 @@ class SearchForm extends React.Component {
   }
 }
 
-export default SearchForm;
+export default withRouter(SearchForm);
