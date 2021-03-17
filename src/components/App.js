@@ -1,5 +1,3 @@
-// import logo from './logo.svg';
-// import './App.css';
 import "../css/index.css";
 import Photo from "./Photo";
 import Nav from "./Nav";
@@ -19,7 +17,7 @@ class App extends React.Component {
       dogsData: [],
       computersData: [],
       searchData: [],
-      urlData: []
+      urlData: [],
     };
 
     this.performSearch = this.performSearch.bind(this);
@@ -57,22 +55,6 @@ class App extends React.Component {
       });
   }
 
-  // componentDidUpdate(urlQuery) {
-  //   console.log(urlQuery)
-  //   if (urlQuery.data !== this.props.data) {
-  //     fetch(
-  //       `https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=${urlQuery}&per_page=24&format=json&nojsoncallback=1`
-  //     )
-  //       .then((res) => res.json())
-  //       .then((data) => {
-  //         this.setState({
-  //           urlData: data.photos,
-  //         });
-  //       console.log(this.state.urlData)
-  //       });
-  //   } 
-  // }
-
   performSearch(query) {
     fetch(
       `https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=${query}&per_page=24&format=json&nojsoncallback=1`
@@ -82,7 +64,6 @@ class App extends React.Component {
         this.setState({
           searchData: data.photos,
         });
-      console.log(this.state.searchData)
       });
   }
 
@@ -97,35 +78,49 @@ class App extends React.Component {
             computers={this.state.computersData}
           />
           <Switch>
+            <Route exact path="/" />
             <Route
               path="/cats"
               cats={this.state.catsData}
-              render={({match}) => (
-                <PhotoContainer match={match}images={this.state.catsData} title="Cats" />
+              render={({ match }) => (
+                <PhotoContainer
+                  match={match}
+                  images={this.state.catsData}
+                  title="Cats"
+                />
               )}
             />
             <Route
               path="/dogs"
               dogs={this.state.dogsData}
-              render={({match}) => (
-                <PhotoContainer match={match} images={this.state.dogsData} title="Dogs" />
+              render={({ match }) => (
+                <PhotoContainer
+                  match={match}
+                  images={this.state.dogsData}
+                  title="Dogs"
+                />
               )}
             />
             <Route
               path="/computers"
               computers={this.state.computersData}
-              render={({match}) => (
-                <PhotoContainer match={match}
+              render={({ match }) => (
+                <PhotoContainer
+                  match={match}
                   images={this.state.computersData}
                   title="Computers"
                 />
               )}
             />
-            <Route path="/search/:searchValue" render={({match}) => (<PhotoContainer match={match} images={this.state.searchData} />)} />
+            <Route
+              path="/search/:searchValue"
+              render={({ match }) => (
+                <PhotoContainer match={match} images={this.state.searchData} />
+              )}
+            />
+
             <Route component={NotFound} />
           </Switch>
-          {/* <Photo /> */}
-          {/* <NotFound /> */}
         </div>
       </BrowserRouter>
     );

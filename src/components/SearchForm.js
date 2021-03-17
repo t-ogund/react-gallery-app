@@ -3,13 +3,13 @@ import { withRouter } from "react-router-dom";
 import App from "./App";
 
 class SearchForm extends React.Component {
-  constructor({match}) {
+  constructor({ match }) {
     super();
     this.state = {
-      searchText: ""
-    }
+      searchText: "",
+    };
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.onKeyUp = this.onKeyUp.bind(this)
+    this.onKeyUp = this.onKeyUp.bind(this);
   }
 
   onKeyUp(e) {
@@ -19,18 +19,23 @@ class SearchForm extends React.Component {
   handleSubmit = (e) => {
     e.preventDefault();
     let searchValue = this.search.value;
-    let path = `/search/${searchValue}`
+    let path = `/search/${searchValue}`;
     this.props.history.push(path);
     this.props.onSearch(this.state.searchText);
     e.currentTarget.reset();
-  }
-
-  
+  };
 
   render() {
     return (
-      <form  onSubmit={this.handleSubmit} className="search-form">
-        <input onChange={this.onKeyUp} ref={ (input) => this.search = input} type="search" name="search" placeholder="Search" required />
+      <form onSubmit={this.handleSubmit} className="search-form">
+        <input
+          onChange={this.onKeyUp}
+          ref={(input) => (this.search = input)}
+          type="search"
+          name="search"
+          placeholder="Search"
+          required
+        />
         <button type="submit" className="search-button">
           <svg
             fill="#fff"
