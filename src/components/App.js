@@ -10,7 +10,8 @@ import { BrowserRouter, Switch, Route } from "react-router-dom";
 class App extends React.Component {
   constructor() {
     super();
-
+    
+//Setting initial state
     this.state = {
       catsData: [],
       dogsData: [],
@@ -22,6 +23,7 @@ class App extends React.Component {
     this.performSearch = this.performSearch.bind(this);
   }
 
+//where all the api calls are being made within componentDidMount
   componentDidMount() {
     fetch(
       `https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=cats&per_page=24&format=json&nojsoncallback=1`
@@ -54,6 +56,7 @@ class App extends React.Component {
       });
   }
 
+  //performSearch function performs api call on search query
   performSearch(query) {
     fetch(
       `https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=${query}&per_page=24&format=json&nojsoncallback=1`

@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
+//Nav component contains the default links for the app
 function Nav() {
   return (
     <nav className="main-nav">

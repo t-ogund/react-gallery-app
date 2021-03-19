@@ -7,6 +7,7 @@ class PhotoContainer extends React.Component {
     super(props);
   }
 
+  //conditional render. If results are found, they will be mapped over and displayed, otherwise NotFound component will display
   render() {
     const results = this.props.images;
     let search = this.props.match.params.searchValue;
