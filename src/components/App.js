@@ -1,15 +1,14 @@
 import "../css/index.css";
-import Photo from "./Photo";
 import Nav from "./Nav";
 import NotFound from "./NotFound";
 import SearchForm from "./SearchForm";
 import PhotoContainer from "./PhotoContainer";
 import apiKey from "../config";
 import React from "react";
-import { BrowserRouter, Switch, Route, Link } from "react-router-dom";
+import { BrowserRouter, Switch, Route } from "react-router-dom";
 
 class App extends React.Component {
-  constructor(props) {
+  constructor() {
     super();
 
     this.state = {
@@ -30,7 +29,7 @@ class App extends React.Component {
       .then((res) => res.json())
       .then((data) => {
         this.setState({
-          catsData: data.photos,
+          catsData: data.photos.photo,
         });
       });
 
@@ -40,7 +39,7 @@ class App extends React.Component {
       .then((res) => res.json())
       .then((data) => {
         this.setState({
-          dogsData: data.photos,
+          dogsData: data.photos.photo,
         });
       });
 
@@ -50,7 +49,7 @@ class App extends React.Component {
       .then((res) => res.json())
       .then((data) => {
         this.setState({
-          computersData: data.photos,
+          computersData: data.photos.photo,
         });
       });
   }
@@ -62,7 +61,7 @@ class App extends React.Component {
       .then((res) => res.json())
       .then((data) => {
         this.setState({
-          searchData: data.photos,
+          searchData: data.photos.photo,
         });
       });
   }

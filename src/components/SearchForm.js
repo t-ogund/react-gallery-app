@@ -1,10 +1,10 @@
 import React from "react";
 import { withRouter } from "react-router-dom";
-import App from "./App";
 
 class SearchForm extends React.Component {
-  constructor({ match }) {
+  constructor() {
     super();
+
     this.state = {
       searchText: "",
     };

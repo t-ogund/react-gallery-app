@@ -1,9 +1,7 @@
 import React from "react";
-import App from "./App";
-import PhotoContainer from "./PhotoContainer";
-import { BrowserRouter, Switch, Route, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 
-function Nav(props) {
+function Nav() {
   return (
     <nav className="main-nav">
       <ul>
